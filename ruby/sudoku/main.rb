@@ -12,4 +12,4 @@ grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
 
 validator = Sudoku.new(grid)
 
-p validator.rows
+p validator.regions
