@@ -1,4 +1,5 @@
 require_relative '../lib/sudoku_solution_validator'
+require_relative '../lib/valid'
 require 'minitest/autorun'
 
 class SudokuTest < Minitest::Test
@@ -83,7 +84,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_forth_row_is_valid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
