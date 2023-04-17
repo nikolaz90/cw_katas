@@ -15,6 +15,10 @@ class Sudoku
 
   def regions
     ranges = [(0..2), (3..5), (6..8)]
-    step_2 = ranges.map { |i| @grid.map { |j| j[i] }.first(3) }
+    ans = []
+    ranges.each { |i| ans << @grid.map { |j| j[i] }[0..2] }
+    ranges.each { |i| ans << @grid.map { |j| j[i] }[3..5] }
+    ranges.each { |i| ans << @grid.map { |j| j[i] }[3..5] }
+    ans
   end
 end
