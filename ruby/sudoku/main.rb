@@ -10,6 +10,7 @@ grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 6, 1, 7, 9]]
 
-validator = Sudoku.new(grid)
+game_1 = Sudoku.new(grid)
 
-p validator.regions[2].flatten.valid?
+p game_1.is_valid?
+p Sudoku.done_or_not(grid)

@@ -1,12 +1,16 @@
 require_relative 'valid'
 class Sudoku
+  attr_reader :grid
+
+  def self.done_or_not(grid)
+    new(grid).is_valid? ? 'Finished!' : 'Try again!'
+  end
+
   def initialize(grid)
     @grid = grid
   end
 
-  def rows
-    @grid
-  end
+  alias rows grid
 
   def columns
     9.times.map { |i| @grid.map { |j| j[i] } }
@@ -19,5 +23,16 @@ class Sudoku
     ranges.each { |range| ans << @grid.map { |j| j[range] }[3..5] }
     ranges.each { |range| ans << @grid.map { |j| j[range] }[6..8] }
     ans
+  end
+
+  def is_valid?
+    all_arrays.each { |array| return false unless array.valid? }
+    true
+  end
+
+  private
+
+  def all_arrays
+    rows + columns + regions.map(&:flatten)
   end
 end
