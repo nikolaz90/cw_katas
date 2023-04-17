@@ -1,5 +1,4 @@
 require_relative '../lib/sudoku_solution_validator'
-require_relative '../lib/valid'
 require 'minitest/autorun'
 
 class SudokuTest < Minitest::Test
