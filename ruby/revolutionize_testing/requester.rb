@@ -7,8 +7,8 @@ class Requester
     @initial_url = paras[:initial_url]
   end
 
-  def start(url = @initial_url)
-    data = get_json_and_parse(url)
+  def start
+    data = get_json_and_parse(@initial_url)
     while followable?(data)
       id = get_id(data)
       data = get_json_and_parse("#{@initial_url}?id=#{id}")
