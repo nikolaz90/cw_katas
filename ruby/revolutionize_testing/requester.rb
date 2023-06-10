@@ -8,17 +8,17 @@ class Requester
   end
 
   def start(url = @initial_url)
-    data = get_json(url)
+    data = get_json_and_parse(url)
     while followable?(data)
       id = get_id(data)
-      data = get_json("#{@initial_url}?id=#{id}")
+      data = get_json_and_parse("#{@initial_url}?id=#{id}")
       speak(data)
     end
   end
 
   private
 
-  def get_json(url)
+  def get_json_and_parse(url)
     JSON.parse(Net::HTTP.get(URI(url)))
   end
 
