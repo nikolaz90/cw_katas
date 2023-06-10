@@ -1,7 +1,6 @@
-require 'net/http'
-require 'json'
-require 'pry-byebug'
+# frozen_string_literal: true
 
+# Requester class will get, if there is something to folow
 class Requester
   def initialize(paras = {})
     @initial_url = paras[:initial_url]
