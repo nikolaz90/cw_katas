@@ -14,25 +14,23 @@ class Requester
       data = get_json("#{@initial_url}?id=#{id}")
       speak(data)
     end
-    data = get_json("#{@initial_url}?id=#{id}")
-    speak(data)
   end
 
   private
 
   def get_json(url)
-    Net::HTTP.get(URI(url))
+    JSON.parse(Net::HTTP.get(URI(url)))
   end
 
   def followable?(data)
-    JSON.parse(data).key?("follow")
+    data.key?("follow")
   end
 
   def get_id(data)
-    JSON.parse(data)['follow'].split('id=')[1]
+    data['follow'].split('id=')[1]
   end
 
   def speak(data)
-    p JSON.parse(data)['message']
+    p data['message']
   end
 end
