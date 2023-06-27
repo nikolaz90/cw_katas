@@ -2,8 +2,8 @@
 
 # Requester class will get, if there is something to folow
 class Requester
-  def initialize(paras = {})
-    @initial_url = paras[:initial_url]
+  def initialize(initial_url:)
+    @initial_url = initial_url
   end
 
   def start
