@@ -6,23 +6,34 @@ class Requester {
   async start () {
     let data = await this.#fetchData(this.url);
     this.#speak(data);
-    this.#isFollowable(data);
+    while (this.#isFollowable(data)) {
+      const newId = this.#getIdFromNewData(data)
+      data = await this.#fetchData(`${this.url}${newId}`);
+      this.#speak(data);
+    }
   };
+
+  // Private methods
 
   #speak(data) {
     const msg = data.message || 'nothing to report';
-    console.log(data.message);
+    console.log(msg);
   };
 
   async #fetchData(url) {
     let data = await fetch(url);
     let resp = await data.json();
-
     return resp;
   };
 
   #isFollowable (data) {
     return Object.keys(data).includes('follow') || false;
+  };
+
+  #getIdFromNewData(data) {
+    const url = data.follow;
+    const regex = /\?id=[0-9]{0,}$/;
+    return url.match(regex)[0];
   };
 }
 
