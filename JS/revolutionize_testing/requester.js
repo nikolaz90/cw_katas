@@ -13,7 +13,7 @@ class Requester {
     }
   };
 
-  // Private methods
+  // Private functions
 
   #speak(data) {
     const msg = data.message || 'nothing to report';
