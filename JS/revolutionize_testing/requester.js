@@ -4,20 +4,21 @@ class Requester {
   }
 
   async start () {
-    let data = await this.#fetchData(this.url)
+    let data = await this.#fetchData(this.url);
     this.#speak(data);
     this.#isFollowable(data);
   };
 
   #speak(data) {
+    const msg = data.message || 'nothing to report';
     console.log(data.message);
   };
 
   async #fetchData(url) {
-    let data = await fetch(url)
-    let resp = await data.json()
+    let data = await fetch(url);
+    let resp = await data.json();
 
-    return resp
+    return resp;
   };
 
   #isFollowable (data) {
