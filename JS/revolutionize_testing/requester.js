@@ -3,20 +3,25 @@ class Requester {
     this.url = url;
   }
 
-  start () {
-    let data = this.#fetchData(this.url)
-    this.#speak(data)
+  async start () {
+    let data = await this.#fetchData(this.url)
+    this.#speak(data);
+    this.#isFollowable(data);
   };
 
   #speak(data) {
-    console.log(data);
+    console.log(data.message);
   };
 
-  #fetchData(url) {
-    let data = {};
-    fetch(url).then(r => r.json())
-              .then(d => data = d)
-              .catch(e => console.log(e))
+  async #fetchData(url) {
+    let data = await fetch(url)
+    let resp = await data.json()
+
+    return resp
+  };
+
+  #isFollowable (data) {
+    return Object.keys(data).includes('follow') || false;
   };
 }
 

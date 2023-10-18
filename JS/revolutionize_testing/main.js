@@ -2,6 +2,7 @@ import Requester from './requester.js'
 
 console.log('Starting the test...');
 
-const requester = new Requester();
+const url = 'https://www.letsrevolutionizetesting.com/challenge.json';
+const requester = new Requester(url);
 
-requester.start()
+requester.start();
