@@ -7,13 +7,19 @@ class ExcelIndex {
     let finalIndex = 0;
     for (let i = 0; i < columnChars.length; i++) {
       let char = columnChars.at(-(i + 1));
-      finalIndex += this.alphaIndex(char) * (26 ** i);
+      finalIndex += this.#encode26(char, i);
     }
     return finalIndex - 1;
   }
 
-  alphaIndex(char) {
+  //private
+
+  #alphaIndex(char) {
     return (this.alphabet.indexOf(char) + 1);
+  }
+
+  #encode26(char, factor) {
+    return this.#alphaIndex(char) * (26 ** factor)
   }
 }
 
