@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/sudoku_solution_validator'
 require 'minitest/autorun'
 
@@ -78,7 +80,7 @@ class SudokuTest < Minitest::Test
             [9, 6, 1, 5, 3, 7, 2, 8, 4],
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
             [3, 4, 5, 2, 8, 6, 1, 7, 9]]
-    expected = [8, 5, 9, 4, 2, 6,7, 1, 3]
+    expected = [8, 5, 9, 4, 2, 6, 7, 1, 3]
     assert_equal expected, Sudoku.new(grid).regions[3].flatten
   end
 
@@ -180,7 +182,6 @@ class SudokuTest < Minitest::Test
     assert_equal 'Try again!', Sudoku.done_or_not(grid)
   end
 
-
   def test_it_is_incomplete_invalid_grid
     # skip
     grid = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
@@ -194,7 +195,6 @@ class SudokuTest < Minitest::Test
             [8, 7, 0, 6, 4, 2, 1, 3, 5]]
     assert_equal 'Try again!', Sudoku.done_or_not(grid)
   end
-
 
   def test_it_is_invalid_grid_with_repeated_diagonals
     # skip
@@ -210,7 +210,6 @@ class SudokuTest < Minitest::Test
     assert_equal 'Try again!', Sudoku.done_or_not(grid)
   end
 
-
   def test_it_is_invalid_grid_with_invalid_number
     # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
@@ -221,7 +220,7 @@ class SudokuTest < Minitest::Test
             [7, 1, 3, 9, 2, 4, 8, 5, 6],
             [9, 0, 1, 5, 3, 7, 2, 1, 4],
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
-            [0, 0, 0, 0, 0, 0, 0,0, 45]]
+            [0, 0, 0, 0, 0, 0, 0, 0, 45]]
     assert_equal 'Try again!', Sudoku.done_or_not(grid)
   end
 end

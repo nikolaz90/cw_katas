@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/sudoku_solution_validator'
 
 grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
@@ -12,5 +14,5 @@ grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
 
 game_1 = Sudoku.new(grid)
 
-p game_1.is_valid?
+p game_1.valid?
 p Sudoku.done_or_not(grid)

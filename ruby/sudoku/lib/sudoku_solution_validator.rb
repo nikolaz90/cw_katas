@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
 require_relative 'valid'
+
 class Sudoku
+  RANGES = [(0..2), (3..5), (6..8)].freeze
+
   attr_reader :grid
 
   def self.done_or_not(grid)
-    new(grid).is_valid? ? 'Finished!' : 'Try again!'
+    new(grid).valid? ? 'Finished!' : 'Try again!'
   end
 
   def initialize(grid)
@@ -17,17 +22,17 @@ class Sudoku
   end
 
   def regions
-    ranges = [(0..2), (3..5), (6..8)]
-    ans = []
-    ranges.each { |range| ans << @grid.map { |j| j[range] }[0..2] }
-    ranges.each { |range| ans << @grid.map { |j| j[range] }[3..5] }
-    ranges.each { |range| ans << @grid.map { |j| j[range] }[6..8] }
-    ans
+    regs = []
+    3.times do |i|
+      RANGES.each do |range|
+        regs << @grid.map { |j| j[range] }[RANGES[i]]
+      end
+    end
+    regs
   end
 
-  def is_valid?
-    all_arrays.each { |array| return false unless array.valid? }
-    true
+  def valid?
+    all_arrays.all?(&:valid?)
   end
 
   private
