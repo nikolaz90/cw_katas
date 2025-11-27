@@ -1,5 +1,3 @@
-require 'pry-byebug'
-
 def length_of_longest_substring(s)
   start = curr = max_length = 0
   store = {}
